@@ -70,10 +70,15 @@ nc_to_tif <- function(nc, dname, crs, out) {
   )
 }
 #'   load list of netCDF files
-list_nc <- list.files("data/nc", pattern = ".nc", full.names = T)
+list_nc <-
+  list.files(
+    "/media/fernando/3EDAEA276B95688A/02_DESKTOP-PC/disco_D/05-DataSets/02-Pp/10-TRMM/netcdf4",
+    pattern = ".nc",
+    full.names = T
+  )
 #'   input parameters netCDF files
 dname <- "precipitation"
 coor <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs+ towgs84=0,0,0")
-out = "data/tif/"
 #'   apply function
-nc_to_tif(list_nc[52], dname, coor, "data/")
+sapply(list_nc[7142], FUN = nc_to_tif, dname, coor, "data/tif/")
+# nc_to_tif(list_nc[52], dname, coor, "data/tif/")
